@@ -258,6 +258,23 @@ exports.BattleMovedex = {
 		target: "normal",
 		type: "Fighting"
 	},
+	"fistassault": {
+		num: 1003,
+		accuracy: 100,
+		basePower: 5,
+		category: "Physical",
+		desc: "The user barrages the opponent with a flurry of fast punches. Hits 20-30 times.",
+		shortDesc: "Hits the foe 20-30 times.",
+		id: "fistassault",
+		name: "Fist Assault",
+		pp: 10,
+		priority: 0,
+		isPunchAttack: true,
+		multihit: [20,30],
+		secondary: false,
+		target: "normal",
+		type: "Fighting"
+	},
 	"lockon": {
 		num: 199,
 		accuracy: true,
