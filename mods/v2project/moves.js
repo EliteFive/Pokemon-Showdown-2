@@ -194,7 +194,7 @@
 		name: "Hyper Storm",
 		pp: 5,
 		priority: 0,
-		weather: 'HyperStorm',
+		weather: 'Typhoon',
 		secondary: false,
 		target: "all",
 		type: "Flying"
