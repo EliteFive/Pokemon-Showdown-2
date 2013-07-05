@@ -267,12 +267,12 @@ exports.BattleItems = {
 		},
 		onModifyAtk: function(atk, pokemon) {
 			if (pokemon.baseTemplate.species === 'Hitmonchan' || pokemon.baseTemplate.species === 'Hitmonlee' || pokemon.baseTemplate.species === 'Hitmontop' || pokemon.baseTemplate.species === 'Sawk' || pokemon.baseTemplate.species === 'Throh') {
-				return atk * 1.5;
+				return atk * 1.3;
 			}
 		},
 		onModifyDef: function(def, pokemon) {
 			if (pokemon.baseTemplate.species === 'Hitmonchan' || pokemon.baseTemplate.species === 'Hitmonlee' || pokemon.baseTemplate.species === 'Hitmontop' || pokemon.baseTemplate.species === 'Sawk' || pokemon.baseTemplate.species === 'Throh') {
-				return def * 1.5;
+				return def * 1.3;
 		},
 		num: 241,
 		gen: 2,
