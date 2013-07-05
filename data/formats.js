@@ -1728,6 +1728,7 @@
 			// Automatically set ability to None
 			set.ability = 'None';
 			return problems;
+		}
         },
 	speciesclause: {
 		effectType: 'Rule',
