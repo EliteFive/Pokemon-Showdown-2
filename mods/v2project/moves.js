@@ -228,29 +228,29 @@
     		name: "Solar Release",
     		pp: 10,
     		priority: 0,
-    		secondary: {
-      			chance: 10,
-      			status: 'brn'
-    		},
-    		onHit: function(target, pokemon) {
-      			if (pokemon.baseTemplate.species === 'Utsukai-Koutou' && !pokemon.transformed) {
-        			pokemon.addVolatile('solarrelease');
-      			}
-    		},
-    		effect: {
-      			duration: 1,
-      			onAfterMoveSecondarySelf: function(pokemon, target, move) {
-        			if (pokemon.template.speciesid === 'utsukaishadou' && pokemon.formeChange('Utsukai-Koutou')) {
-          				this.add('-formechange', pokemon, 'Utsukai-Koutou');
-        			} else if (pokemon.formeChange('Utsukai-Shadou')) {
-          				this.add('-formechange', pokemon, 'Utsukai-Shadou');
-        			}
-        			pokemon.removeVolatile('solarrelease');
-      			}
-    		},
-    		target: "allAdjacentFoes",
-    		type: "Fairy"
-  	},
+		secondary: {
+			chance: 10,
+			status: 'brn'
+		},
+		onHit: function(target, pokemon) {
+			if (pokemon.baseTemplate.species === 'Utsukai-Koutou' && !pokemon.transformed) {
+				pokemon.addVolatile('solarrelease');
+			}
+		},
+		effect: {
+			duration: 1,
+			onAfterMoveSecondarySelf: function(pokemon, target, move) {
+				if (pokemon.template.speciesid === 'utsukaishadou' && pokemon.formeChange('Utsukai-Koutou')) {
+					this.add('-formechange', pokemon, 'Utsukai-Koutou');
+				} else if (pokemon.formeChange('Utsukai-Shadou')) {
+					this.add('-formechange', pokemon, 'Utsukai-Shadou');
+				}
+				pokemon.removeVolatile('solarrelease');
+			}
+		},
+		target: "allAdjacentFoes",
+		type: "Normal"
+	},
 	"thunder": {
 		num: 87,
 		accuracy: 70,
