@@ -41,7 +41,7 @@
 		desc: "When this Pokemon enters the battlefield, it causes a permanent Hyper Storm that can only be stopped by Air Lock, Cloud Nine or another weather condition.",
 		shortDesc: "On switch-in, this Pokemon summons Hyper Storm until another weather replaces it.",
 		onStart: function(source) {
-			this.setWeather('hyperstorm');
+			this.setWeather('typhoon');
 			this.weatherData.duration = 0;
 		},
 		id: "risingwind",
