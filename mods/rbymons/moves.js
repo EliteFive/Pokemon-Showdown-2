@@ -55,34 +55,6 @@ exports.BattleMovedex = {
       }
     }
   },
-  acupressure: {
-    inherit: true,
-    onHit: function(target) {
-      var stats = [];
-      for (var i in target.boosts) {
-        if (target.boosts[i] < 6) {
-          stats.push(i);
-        }
-      }
-      if (stats.length) {
-        var i = stats[this.random(stats.length)];
-        var boost = {};
-        boost[i] = 2;
-        this.boost(boost);
-        if (boost = spa) {
-          boosts: {
-            spd: 2
-          }
-        } else if (boost = spd) {
-          boosts: {
-            spa: 2
-          }
-        }
-      } else {
-      return false;
-      }
-    }
-  },
   bugbuzz: {
     inherit: true,
     secondary: {
@@ -191,21 +163,21 @@ exports.BattleMovedex = {
     }
   },
   energyball: {
-    inherit: true,
-    secondary: {
+    	inherit: true,
+    	secondary: {
   		chance: 10,
-			boosts: {
-        spa: -1,
-				spd: -1
-			}
+		boosts: {
+        		spa: -1,
+			spd: -1
 		}
+	}
   },
   faketears: {
     inherit: true,
-    boosts: {
-      spa: -2,
-			spd: -2
-		}
+    	boosts: {
+      		spa: -2,
+		spd: -2
+	}
   },
   fierydance: {
     inherit: true,
@@ -214,7 +186,7 @@ exports.BattleMovedex = {
 			self: {
 				boosts: {
 					spa: 1,
-          spd: 1
+          				spd: 1
 				}
 			}
 		}
