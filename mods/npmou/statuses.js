@@ -42,9 +42,6 @@ exports.BattleStatuses = {
 		this.eachEvent('Weather');
 	},
 	onWeather: function(target, pokemon) {
-		if (target.hasType('Poison')) {
-			this.heal(target.maxhp/16);
-		}
 		pokemon.trySetStatus('tox');
 	},
 	onEnd: function() {
