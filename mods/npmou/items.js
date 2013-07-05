@@ -257,7 +257,7 @@ exports.BattleItems = {
 			}
 		},
 		desc: "Raises accuracy by 50% if the holder moves after the target."
-	}
+	},
 	"blackbelt": {
 		id: "blackbelt",
 		name: "Black Belt",
