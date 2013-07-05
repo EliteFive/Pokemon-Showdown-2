@@ -186,24 +186,6 @@ exports.BattleItems = {
 		},
 		desc: "If Sandstorm is active, this Pokemon heals 1/16 of its max HP each turn; immunity to Sandstorm."
 	},
-	"blacksludge": {
-		id: "blacksludge",
-		name: "Black Sludge",
-		spritenum: 34,
-		fling: {
-			basePower: 30
-		},
-		onResidualOrder: 5,
-		onResidualSubOrder: 2,
-		onResidual: function(pokemon) {
-			if (pokemon.hasType('Poison')) {
-				this.heal(pokemon.maxhp/12);
-			} else {
-				this.damage(pokemon.maxhp/12);
-			}
-		},
-		desc: "Recovers 1\/12 HP each turn for Poison types. Damages all other types."
-	},
 	"twistedspoon": {
 		id: "twistedspoon",
 		name: "TwistedSpoon",
