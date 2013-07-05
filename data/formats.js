@@ -650,15 +650,15 @@
 	},
 	rbymons: {
 		effectType: 'Format',
-		name: "RBYmons (Incomplete)",
+		name: "RBYmons",
 		section: "Other Metagames",
 		mod: 'rbymons',
 		rated: true,
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
-		ruleset: ['Standard', 'Team Preview', 'Pokemon'],
-		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Cosmic Power']
+		ruleset: ['Team Preview', 'Standard', 'Pokemon'],
+		banlist: ['Uber', 'Cosmic Power']
 	},
 	ousixmoves: {
 		effectType: 'Format',
@@ -1217,7 +1217,7 @@
 	seasonaljollyjuly: {
 		effectType: 'Format',
 		name: "[Seasonal] Jolly July",
-		section: "OM of the Month",
+		section: "Seasonal Ladders",
 		team: 'randomSeasonalJuly',
 		canUseRandomTeam: true,
 		rated: true,
