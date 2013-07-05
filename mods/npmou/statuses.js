@@ -37,9 +37,6 @@ exports.BattleStatuses = {
 		}
 	},
 	onResidualOrder: 1,
-	onFoeModifyPokemon: function(pokemon) {
-		pokemon.trySetStatus('tox');
-	},
 	onResidual: function() {
 		this.add('-weather', 'PoisonFog', '[upkeep]');
 		this.eachEvent('Weather');
@@ -48,6 +45,9 @@ exports.BattleStatuses = {
 		if (target.hasType('Poison')) {
 			this.heal(target.maxhp/16);
 		}
+	},
+	onWeather: function(pokemon) {
+		pokemon.trySetStatus('tox');
 	},
 	onEnd: function() {
 		this.add('-weather', 'none');
