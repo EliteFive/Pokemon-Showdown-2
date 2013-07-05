@@ -658,7 +658,7 @@
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
-		ruleset: ['Team Preview', 'Standard', 'Pokemon'],
+		ruleset: ['Team Preview', 'Standard', 'Pokemon', 'RBY Clause'],
 		banlist: ['Uber', 'Cosmic Power']
 	},
 	ousixmoves: {
@@ -1717,6 +1717,17 @@
 			haikus = haikus.randomize();
 			this.add('-message', haikus[0]);
 		}
+        },
+        rbyclause: {
+        	effectType: 'Banlist',
+		validateSet: function(set, format) {
+			var template = this.getTemplate(set.species);
+			var problems = [];
+			// Let's manually delete items.
+			set.item = '';
+			// Automatically set ability to None
+			set.ability = 'None';
+			return problems;
         },
 	speciesclause: {
 		effectType: 'Rule',
