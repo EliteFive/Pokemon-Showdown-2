@@ -273,8 +273,9 @@ exports.BattleItems = {
 		onModifyDef: function(def, pokemon) {
 			if (pokemon.baseTemplate.species === 'Hitmonchan' || pokemon.baseTemplate.species === 'Hitmonlee' || pokemon.baseTemplate.species === 'Hitmontop' || pokemon.baseTemplate.species === 'Sawk' || pokemon.baseTemplate.species === 'Throh') {
 				return def * 1.3;
-		}
+		},
 		num: 241,
+		gen: 2,
 		desc: "Holder's Fighting-type attacks have 1.2x power."
 	}
 };
