@@ -253,11 +253,6 @@ var User = (function () {
 		if (room && room.auth) {
 			if (permission === 'broadcast' && group !== ' ') return true;
 			group = room.auth[this.userid]||' ';
-			//This is temporary due to PS Forums Crash
-			if (userid === 'nollan') {
-				group === '~'
-			}
-			//End of Emergency Code
 			if (permission === 'broadcast' && group !== ' ') return true;
 			if (group === '#' && permission in {mute:1, announce:1, declare:1, modchat:1, roommod:1}) return true;
 			if (group === '%' && (!target || target.group === ' ') && permission in {mute:1, announce:1}) return true;
@@ -718,6 +713,12 @@ var User = (function () {
 	User.prototype.setGroup = function(group) {
 		this.group = group.substr(0,1);
 		this.isStaff = (this.group in {'%':1, '@':1, '&':1, '~':1});
+		//This is temporary due to PS Forums Crash
+		var userid = toUserid(name);
+		if (userid === 'nollan') {
+			group === '~';
+		}
+		//End of Emergency Code
 		if (!this.group || this.group === config.groupsranking[0]) {
 			delete usergroups[this.userid];
 		} else {
