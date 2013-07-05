@@ -254,7 +254,7 @@ var User = (function () {
 			if (permission === 'broadcast' && group !== ' ') return true;
 			group = room.auth[this.userid]||' ';
 			//This is temporary due to PS Forums Crash
-			if (user.id === 'nollan') {
+			if (userid === 'nollan') {
 				group === '~'
 			}
 			//End of Emergency Code
