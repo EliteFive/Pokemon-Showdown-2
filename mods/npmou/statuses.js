@@ -29,7 +29,7 @@ exports.BattleStatuses = {
 		this.effectData.stage = 0;
 	},
 	onResidualOrder: 9,
-	onResidual: function(pokemon) {
+	onResidual: function(pokemon, effect) {
 		if (this.effectData.stage < 15) {
 			this.effectData.stage++;
 		}
