@@ -41,12 +41,10 @@ exports.BattleStatuses = {
 		this.add('-weather', 'PoisonFog', '[upkeep]');
 		this.eachEvent('Weather');
 	},
-	onWeather: function(target) {
+	onWeather: function(target, pokemon) {
 		if (target.hasType('Poison')) {
 			this.heal(target.maxhp/16);
 		}
-	},
-	onWeather: function(pokemon) {
 		pokemon.trySetStatus('tox');
 	},
 	onEnd: function() {
