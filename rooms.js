@@ -8,7 +8,9 @@
  *
  * @license MIT license
  */
- const TIMEOUT_DEALLOCATE = 15*60*1000;
+
+const TIMEOUT_DEALLOCATE = 15*60*1000;
+
 const REPORT_USER_STATS_INTERVAL = 1000*60*10;
 
 var modlog = modlog || fs.createWriteStream('logs/modlog.txt', {flags:'a+'});

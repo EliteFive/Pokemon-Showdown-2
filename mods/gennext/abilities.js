@@ -136,13 +136,12 @@ exports.BattleAbilities = {
 				move.onHit = function(target, source) {
 					this.setWeather(weather, source, this.getAbility('flowergift'));
 					this.weatherData.duration = 0;
-					this.boost({spd:1}, source, source, this.getAbility('flowergift'));
 				};
 				move.target = 'self';
 				move.sideCondition = 'flowergift';
 			}
 		},
-		onModifyStats: function(stats, pokemon) {
+		onUpdate: function(pokemon) {
 			if (this.isWeather('sunnyday')) {
 				if (pokemon.isActive && pokemon.speciesid === 'cherrim' && this.effectData.forme !== 'Sunshine') {
 					this.effectData.forme = 'Sunshine';
@@ -169,13 +168,23 @@ exports.BattleAbilities = {
 	"slowstart": {
 		inherit: true,
 		effect: {
-			duration: 2,
+			duration: 3,
 			onStart: function(target) {
 				this.add('-start', target, 'Slow Start');
 			},
-			onModifyStats: function(stats) {
-				stats.atk /= 2;
-				stats.spe /= 2;
+			onModifyAtk: function(atk, pokemon) {
+				if (pokemon.ability !== 'slowstart') {
+					pokemon.removeVolatile('slowstart');
+					return;
+				}
+				return atk / 2;
+			},
+			onModifySpe: function(spe, pokemon) {
+				if (pokemon.ability !== 'slowstart') {
+					pokemon.removeVolatile('slowstart');
+					return;
+				}
+				return spe / 2;
 			},
 			onEnd: function(target) {
 				this.add('-end', target, 'Slow Start');
@@ -225,6 +234,15 @@ exports.BattleAbilities = {
 				return basePower * 1/2;
 			}
 		}
+	},
+	"heatproof": {
+		inherit: true,
+		onSourceBasePower: function(basePower, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				this.add('-message', "The attack was weakened by Heatproof!");
+				return basePower / 2;
+			}
+		},
 	},
 	"reckless": {
 		inherit: true,

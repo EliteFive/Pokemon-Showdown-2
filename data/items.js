@@ -3229,7 +3229,6 @@ exports.BattleItems = {
 			}
 		},
 		num: 247,
-
 		gen: 2,
 		desc: "Holder's Ghost-type attacks have 1.2x power."
 	},

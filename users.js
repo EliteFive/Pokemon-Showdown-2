@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Users
  * Pokemon Showdown - http://pokemonshowdown.com/
  *
@@ -249,6 +249,16 @@ var User = (function () {
 		var group = this.group;
 		var groupData = config.groups[group];
 		var checkedGroups = {};
+
+		if (room && room.auth) {
+			if (permission === 'broadcast' && group !== ' ') return true;
+			group = room.auth[this.userid]||' ';
+			if (permission === 'broadcast' && group !== ' ') return true;
+			if (group === '#' && permission in {mute:1, announce:1, declare:1, modchat:1, roommod:1}) return true;
+			if (group === '%' && (!target || target.group === ' ') && permission in {mute:1, announce:1}) return true;
+			if (groupData && groupData['root']) return true;
+			return false;
+		}
 
 		while (groupData) {
 			// Cycle checker

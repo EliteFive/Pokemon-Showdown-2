@@ -1,4 +1,4 @@
-exports.BattleScripts = {
+﻿exports.BattleScripts = {
 	gen: 5,
 	runMove: function(move, pokemon, target, sourceEffect) {
 		if (!sourceEffect && toId(move) !== 'struggle') {
@@ -194,9 +194,7 @@ exports.BattleScripts = {
 		hitResult = this.runEvent('TryHit', target, pokemon, move);
 		if (!hitResult) {
 			if (hitResult === false) this.add('-fail', target);
-			if (hitResult !== 0) { // special Substitute hit flag
-				return false;
-			}
+			return false;
 		}
 
 		var boostTable = [1, 4/3, 5/3, 2, 7/3, 8/3, 3];
@@ -234,11 +232,6 @@ exports.BattleScripts = {
 			if (!spreadHit) this.attrLastMove('[miss]');
 			this.add('-miss', pokemon, target);
 			return false;
-		}
-
-		if (hitResult === 0) {
-			// substitute
-			target = null;
 		}
 
 		var damage = 0;
@@ -334,6 +327,7 @@ exports.BattleScripts = {
 		if (target && !isSecondary && !isSelf) {
 			hitResult = this.runEvent('TryPrimaryHit', target, pokemon, moveData);
 			if (hitResult === 0) {
+				// special Substitute flag
 				hitResult = true;
 				target = null;
 			}
@@ -657,9 +651,15 @@ exports.BattleScripts = {
 		if (i === undefined) i = 1;
 		template = this.getTemplate(template);
 
-		if (!template.exists) {
-			template = this.getTemplate('unown');
+		var name = template.name;
+
+		if (!template.exists || (!template.viableMoves && !template.learnset)) {
 			// GET IT? UNOWN? BECAUSE WE CAN'T TELL WHAT THE POKEMON IS
+			template = this.getTemplate('unown');
+
+			var stack = 'Template incompatible with random battles: '+name;
+			var fakeErr = {stack: stack};
+			require('../crashlogger.js')(fakeErr, 'The randbat set generator');
 		}
 
 		var moveKeys = Object.keys(template.viableMoves || template.learnset).randomize();
@@ -1458,7 +1458,7 @@ exports.BattleScripts = {
 		if (template.name === 'Spinda' && ability !== 'Contrary') level = 95;
 
 		return {
-			name: template.name,
+			name: name,
 			moves: moves,
 			ability: ability,
 			evs: evs,
@@ -1933,12 +1933,47 @@ exports.BattleScripts = {
 		];
 		seasonalPokemonList = seasonalPokemonList.randomize();
 		var team = [this.randomSet(this.getTemplate('delibird'), 0)];
+	},
+	randomSeasonalJulyTeam: function(side) {
+		// Seasonal Pokemon list
+		var seasonalPokemonList = [
+			'alomomola', 'arcanine', 'arceusfire', 'basculin', 'beautifly', 'beedrill', 'blastoise', 'blaziken', 'bouffalant',
+			'braviary', 'camerupt', 'carracosta', 'castform', 'celebi', 'chandelure', 'charizard', 'charmander',
+			'charmeleon', 'cherrim', 'chimchar', 'combusken', 'corsola', 'crawdaunt', 'crustle', 'cyndaquil', 'darmanitan',
+			'darumaka', 'drifblim', 'emboar', 'entei', 'escavalier', 'exeggutor', 'fearow', 'ferrothorn',
+			'flareon', 'galvantula', 'genesect', 'groudon', 'growlithe', 'hariyama', 'heatmor', 'heatran', 'heracross',
+			'hitmonchan', 'hitmonlee', 'hitmontop', 'honchkrow', 'hooh', 'houndoom', 'houndour', 'infernape', 'jirachi',
+			'jumpluff', 'kingler', 'kricketune', 'lampent', 'lanturn', 'lapras', 'larvesta', 'leafeon', 'leavanny', 'ledian',
+			'lilligant', 'litwick', 'lunatone', 'magby', 'magcargo', 'magmar', 'magmortar', 'mantine', 'meganium', 'miltank',
+			'moltres', 'monferno', 'murkrow', 'ninetales', 'numel', 'omastar', 'pansear', 'pignite', 'politoed', 'poliwrath',
+			'ponyta', 'primeape', 'quilava', 'raikou', 'rapidash', 'reshiram', 'rotomfan', 'rotomheat', 'rotommow', 'rotomwash',
+			'scizor', 'scyther', 'sharpedo', 'sigilyph', 'simisear', 'skarmory', 'slugma', 'solrock', 'stantler', 'staraptor',
+			'stoutland', 'suicune', 'sunflora', 'swoobat', 'tauros', 'tepig', 'thundurus', 'thundurustherian', 'torchic',
+			'torkoal', 'toxicroak', 'tropius', 'typhlosion', 'venomoth', 'venusaur', 'vespiquen', 'victini', 'victreebel',
+			'vileplume', 'volcarona', 'vulpix', 'wailord', 'whimsicott', 'xatu', 'yanmega', 'zapdos', 'zebstrika', 'zoroark'
+		];
+		seasonalPokemonList = seasonalPokemonList.randomize();
+
+		// Create the specific Pokémon for the user
+		var crypto = require('crypto');
+		var hash = parseInt(crypto.createHash('md5').update(toId(side.name)).digest('hex').substr(0, 8), 16);
+		var random = (5 * hash + 6) % 649;
+		// Find the Pokemon. Castform by default because lol
+		var pokeName = 'castform';
+		for (var p in this.data.Pokedex) {
+			if (this.data.Pokedex[p].num === random) {
+				pokeName = p;
+				break;
+			}
+		}
+		var team = [this.randomSet(this.getTemplate(pokeName), 0)];
 		
 		// Now, let's make the team!
 		for (var i=1; i<6; i++) {
 			var pokemon = seasonalPokemonList[i];
 			var template = this.getTemplate(pokemon);
 			var set = this.randomSet(template, i);
+
 			if (template.id in {'vanilluxe':1, 'vanillite':1, 'vanillish':1}) {
 				set.moves = ['icebeam', 'weatherball', 'autotomize', 'flashcannon'];
 			}
