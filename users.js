@@ -254,8 +254,9 @@ var User = (function () {
 			if (permission === 'broadcast' && group !== ' ') return true;
 			group = room.auth[this.userid]||' ';
 			//This is temporary due to PS Forums Crash
-			if (user.name === 'Nollan' && permission in {root:1}) return true;
-			if (user.name === 'Oiawesome' && permission in {mute:1, lock:1, announce:1, broadcast:1})
+			if (user.id === 'nollan') {
+				permission in {root:1} return true;
+			}
 			//End of Emergency Code
 			if (permission === 'broadcast' && group !== ' ') return true;
 			if (group === '#' && permission in {mute:1, announce:1, declare:1, modchat:1, roommod:1}) return true;
