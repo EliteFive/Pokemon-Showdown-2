@@ -461,54 +461,6 @@
     		ruleset: ['Pokemon', 'Sleep Clause', 'Species Clause', 'Team Preview', 'Moody Clause', 'Evasion Moves Clause', 'Faint Clause'],
     		banlist: ['Unreleased', 'Illegal', 'Sheer Cold', 'Horn Drill', 'Guillotine']
     	},
-    	nuv2: {
-                effectType: 'Format',
-                name: "NUv2",
-                section: 'Other Metagames',
-                mod: "v2project",
-		rated: true,
-		challengeShow: true,
-		searchShow: true,
-		isTeambuilderFormat: true,
-		ruleset: ['RU'],
-		banlist: ['RU']
-        },
-	ruv2: {
-                effectType: 'Format',
-                name: "RUv2",
-                section: 'Other Metagames',
-                mod: "v2project",
-		rated: true,
-		challengeShow: true,
-		searchShow: true,
-		isTeambuilderFormat: true,
-		ruleset: ['UU'],
-		banlist: ['UU', 'BL2', 'Baton Pass + Shell Smash']
-	},
-	uuv2: {
-                effectType: 'Format',
-                name: "UUv2",
-                section: 'Other Metagames',
-                mod: "v2project",
-		rated: true,
-		challengeShow: true,
-		searchShow: true,
-		isTeambuilderFormat: true,
-		ruleset: ['OU'],
-		banlist: ['OU', 'BL1']
-        },
-        ouv2: {
-                effectType: 'Format',
-                name: "OUv2",
-                section: 'Other Metagames',
-                mod: "v2project",
-		rated: true,
-		challengeShow: true,
-		searchShow: true,
-		isTeambuilderFormat: true,
-                ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
-		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
-        },
     	dscap: {
     		effectType: 'Format',
     		section: "Other Metagames",
