@@ -461,6 +461,7 @@
     		ruleset: ['Pokemon', 'Sleep Clause', 'Species Clause', 'Team Preview', 'Moody Clause', 'Evasion Moves Clause', 'Faint Clause'],
     		banlist: ['Unreleased', 'Illegal', 'Sheer Cold', 'Horn Drill', 'Guillotine']
     	},
+    	/*
     	nuv2: {
                 effectType: 'Format',
                 name: "NUv2",
@@ -508,7 +509,7 @@
 		isTeambuilderFormat: true,
                 ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
 		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
-        },
+        },*/
     	dscap: {
     		effectType: 'Format',
     		section: "Other Metagames",
