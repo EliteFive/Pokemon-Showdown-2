@@ -19,6 +19,26 @@ exports.BattleStatuses = {
 		return 3;
 	}
    },
+   tox: {
+	effectType: 'Status',
+	onStart: function(target) {
+		this.add('-status', target, 'tox');
+		this.effectData.stage = 0;
+	},
+	onSwitchIn: function() {
+		this.effectData.stage = 0;
+	},
+	onResidualOrder: 9,
+	onResidual: function(pokemon) {
+		if (this.effectData.stage < 15) {
+			this.effectData.stage++;
+		}
+		if (effect && effectType === 'Weather' && this.effectData.stage >= 4) {
+			return this.effectData.stage = 4;
+		}
+		this.damage(clampIntRange(pokemon.maxhp/16, 1)*this.effectData.stage);
+	}
+   },
    poisonfog: {
    	effectType: 'Weather',
 	duration: 5,
@@ -41,7 +61,7 @@ exports.BattleStatuses = {
 		this.add('-weather', 'PoisonFog', '[upkeep]');
 		this.eachEvent('Weather');
 	},
-	onWeather: function(target, pokemon) {
+	onWeather: function(pokemon) {
 		pokemon.trySetStatus('tox');
 	},
 	onEnd: function() {
