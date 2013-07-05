@@ -267,15 +267,15 @@ exports.BattleItems = {
 		},
 		onModifyAtk: function(atk, pokemon) {
 			if (pokemon.baseTemplate.species === 'Hitmonchan' || pokemon.baseTemplate.species === 'Hitmonlee' || pokemon.baseTemplate.species === 'Hitmontop' || pokemon.baseTemplate.species === 'Sawk' || pokemon.baseTemplate.species === 'Throh') {
-				return atk * 1.3;
+				return atk * 1.5;
 			}
 		},
 		onModifyDef: function(def, pokemon) {
 			if (pokemon.baseTemplate.species === 'Hitmonchan' || pokemon.baseTemplate.species === 'Hitmonlee' || pokemon.baseTemplate.species === 'Hitmontop' || pokemon.baseTemplate.species === 'Sawk' || pokemon.baseTemplate.species === 'Throh') {
-				return def * 1.3;
+				return def * 1.5;
 		},
 		num: 241,
 		gen: 2,
-		desc: "Holder's Fighting-type attacks have 1.2x power."
+		desc: ""
 	}
 };
