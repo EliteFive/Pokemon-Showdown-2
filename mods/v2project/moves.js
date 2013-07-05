@@ -242,13 +242,61 @@
       			onAfterMoveSecondarySelf: function(pokemon, target, move) {
         			if (pokemon.template.speciesid === 'utsukaishadou' && pokemon.formeChange('Utsukai-Koutou')) {
           				this.add('-formechange', pokemon, 'Utsukai-Koutou');
-        			} else if (pokemon.formeChange('Utsukai-Koutou')) {
-          				this.add('-formechange', pokemon, 'Utsukai-Shoudou');
+        			} else if (pokemon.formeChange('Utsukai-Shadou')) {
+          				this.add('-formechange', pokemon, 'Utsukai-Shadou');
         			}
         			pokemon.removeVolatile('solarrelease');
       			}
     		},
     		target: "allAdjacentFoes",
     		type: "Fairy"
-  	} 
+  	},
+	"thunder": {
+		num: 87,
+		accuracy: 70,
+		basePower: 120,
+		category: "Special",
+		desc: "Deals damage to one adjacent target with a 30% chance to paralyze it. This move can hit a target using Bounce, Fly, or Sky Drop. If the weather is Rain Dance, this move cannot miss. If the weather is Sunny Day, this move's accuracy is 50%.",
+		shortDesc: "30% chance to paralyze target. Can't miss in rain.",
+		id: "thunder",
+		isViable: true,
+		name: "Thunder",
+		pp: 10,
+		priority: 0,
+		onModifyMove: function(move) {
+			if (this.isWeather('raindance')) move.accuracy = true;
+			else if (this.isWeather('sunnyday')) move.accuracy = 50;
+			else if (this.isWeather('typhoon')) move.accuracy = 50;
+		},
+		secondary: {
+			chance: 30,
+			status: 'par'
+		},
+		target: "normal",
+		type: "Electric"
+	},
+		"hurricane": {
+		num: 542,
+		accuracy: 70,
+		basePower: 120,
+		category: "Special",
+		desc: "Deals damage to one adjacent or non-adjacent target with a 30% chance to confuse it. This move can hit a target using Bounce, Fly, or Sky Drop. If the weather is Rain Dance, this move cannot miss. If the weather is Sunny Day, this move's accuracy is 50%.",
+		shortDesc: "30% chance to confuse target. Can't miss in rain.",
+		id: "hurricane",
+		isViable: true,
+		name: "Hurricane",
+		pp: 10,
+		priority: 0,
+		onModifyMove: function(move) {
+			if (this.isWeather('raindance')) move.accuracy = true;
+			if (this.isWeather('typhoon')) move.accuracy = true;
+			else if (this.isWeather('sunnyday')) move.accuracy = 50;
+		},
+		secondary: {
+			chance: 30,
+			volatileStatus: 'confusion'
+		},
+		target: "any",
+		type: "Flying"
+	}
 };  
