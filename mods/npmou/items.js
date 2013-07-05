@@ -275,7 +275,6 @@ exports.BattleItems = {
 				return def * 1.3;
 		}
 		num: 241,
-		gen: 2,
 		desc: "Holder's Fighting-type attacks have 1.2x power."
 	}
 };
