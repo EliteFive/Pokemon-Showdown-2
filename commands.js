@@ -1321,7 +1321,7 @@ var commands = exports.commands = {
 			if(this.muted)
 				return '!' + this.name;
 			if(this.locked)
-				return '?' + this.name;
+				return '‽' + this.name;
 			return tar + this.name;
 		};
 		user.updateIdentity();
