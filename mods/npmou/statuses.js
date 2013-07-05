@@ -28,9 +28,6 @@ exports.BattleStatuses = {
 			return basePower * 1.5;
 		}
 	},
-	onSwitchIn: function(pokemon) {
-		pokemon.trySetStatus('tox');
-	},
 	onStart: function(battle, source, effect) {
 		if (effect && effect.effectType === 'Ability') {
 			this.effectData.duration = 0;
@@ -40,6 +37,9 @@ exports.BattleStatuses = {
 		}
 	},
 	onResidualOrder: 1,
+	onFoeModifyPokemon: function(pokemon) {
+		pokemon.trySetStatus('tox');
+	},
 	onResidual: function() {
 		this.add('-weather', 'PoisonFog', '[upkeep]');
 		this.eachEvent('Weather');
