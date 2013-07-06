@@ -9,6 +9,45 @@
 		 rating: 3,
 		 num: -4
 	},
+	"flowergift": {
+		desc: "If this Pokemon is active while Sunny Day is in effect, its Attack and Special Defense stats (as well as its partner's stats in double battles) receive a 50% boost.",
+		shortDesc: "If user is Cherrim and Sunny Day is active, it and allies' Attack and Sp. Def are 1.5x.",
+		onStart: function(pokemon) {
+			delete this.effectData.forme;
+		},
+		onUpdate: function(pokemon) {
+			if (!pokemon.isActive || pokemon.speciesid !== 'cherrim') return;
+			if (this.isWeather('sunnyday')) {
+				if (this.effectData.forme !== 'Sunshine') {
+					this.effectData.forme = 'Sunshine';
+					this.add('-formechange', pokemon, 'Cherrim-Sunshine');
+					this.add('-message', pokemon.name+' transformed! (placeholder)');
+				}
+			} else {
+				if (this.effectData.forme) {
+					delete this.effectData.forme;
+					this.add('-formechange', pokemon, 'Cherrim');
+					this.add('-message', pokemon.name+' transformed! (placeholder)');
+				}
+			}
+		},
+		onAllyModifySpA: function(spa) {
+			if (this.effectData.target.template.speciesid !== 'cherrim') return;
+			if (this.isWeather('sunnyday')) {
+				return atk *= 1.3;
+			}
+		},
+		onAllyModifySpD: function(spd) {
+			if (this.effectData.target.template.speciesid !== 'cherrim') return;
+			if (this.isWeather('sunnyday')) {
+				return spd *= 1.3;
+			}
+		},
+		id: "flowergift",
+		name: "Flower Gift",
+		rating: 4,
+		num: 122
+	},
 	"forecast": {
 		desc: "In weather, this pokemon's form changes and it receives boosts to Attack, Defense, Special Attack, Special Defense, Speed, and a 20% boost to base power of the move Weather Ball. The stat boosts change based on the specific weather that is active.",
 		shortDesc: "In weather, this pokemon's form changes and it receives various boosts.",
