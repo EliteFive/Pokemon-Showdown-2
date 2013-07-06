@@ -246,15 +246,10 @@ Minor move changes:
 - Perfect accuracy moves with a base power of 60 have their base power
   increased to 90
 
-<<<<<<< HEAD
-- Scald's damage is no longer affected by weather: instead, it gets 0% burn
-  chance in rain and 60% burn chance in sun
-=======
 - Scald's damage is no longer affected by weather: instead, it gets 60% burn
   chance in sun
 
 - Hi Jump Kick now has 100 base power
->>>>>>> 1b937a7a3d9bbef2c2f459d5b6bba9fd6beccfc4
 
 - Shadow Ball now has 90 base power and 30% -SpD
 
@@ -332,21 +327,15 @@ Minor move changes:
 
 - Minimize only increases evasion by one stage
 
-<<<<<<< HEAD
-=======
 - Double Team takes 25% of user's max HP (like Substitute)
 
->>>>>>> 1b937a7a3d9bbef2c2f459d5b6bba9fd6beccfc4
 Minor learnset changes:
 
 - Azumarill now gets Belly Drum with no incompatibilities
 
-<<<<<<< HEAD
-=======
 - Mantine gets many new moves: Recover, Whirlwind, Baton Pass, Wish, Soak,
   Lock-On, Acid Spray, Octazooka, Stockpile
 
->>>>>>> 1b937a7a3d9bbef2c2f459d5b6bba9fd6beccfc4
 - Masquerain gets Surf
 
 - Butterfree, Beautifly, Masquerain, and Mothim get Hurricane
@@ -411,12 +400,9 @@ Minor ability changes:
 
 - Static and Poison Point have a 100% chance of activating
 
-<<<<<<< HEAD
-=======
 - Speed Boost does not activate on turns Protect, Detect, Endure, etc
   are used
 
->>>>>>> 1b937a7a3d9bbef2c2f459d5b6bba9fd6beccfc4
 - Telepathy grants Imprison on switch-in
 
 - Compoundeyes now grants 1.6x accuracy, Victory Star grants 1.5x
@@ -452,16 +438,11 @@ Minor ability changes:
 
 - Guts, Quick Feet, and Flare Boost take half damage from burns
 
-<<<<<<< HEAD
-- Water Veil and Sand Veil grant 20% damage reduction in rain and sand,
-  respectively (this replaces Sand Veil's usual effect, but not Water Veil's)
-=======
 - Sand Veil grants 20% damage reduction in sand (this replaces Sand Veil's
   usual effect)
 
 - Water Veil grans 12.5% damage reduction out of rain and 25% damage
   reduction in rain, in addition to its usual effect
->>>>>>> 1b937a7a3d9bbef2c2f459d5b6bba9fd6beccfc4
 
 - Multiscale decreases damage by 1/3 rather than 1/2 (Sorry, Dragonite,
   this is in return for a usable physical Flying STAB in Aerial Ace)
@@ -472,19 +453,6 @@ Minor item changes:
 
 - Wide Lens now grants 1.3x accuracy
 
-<<<<<<< HEAD
-Tier changes:
-
-- OU no longer has any tier-specific bans (DrizzleSwim and Soul Dew are no
-  longer banned)
-
-- Moody is no longer banned
-
-- Minimize is no longer banned
-
-- Kyurem, Kyurem-B, Deoxys-D, Latios, and Latias are now Uber (by the time
-  NEXT is done, they would presumably have received enough buffs to be Uber)
-=======
 Bans:
 
 - The OU banlist (i.e. Pokemon considered Uber) is now:
@@ -508,4 +476,3 @@ Specifically, differences from regular OU:
 - DrizzleSwim is no longer banned
 
 - There is no Moody Clause or Evasion Clause
->>>>>>> 1b937a7a3d9bbef2c2f459d5b6bba9fd6beccfc4
