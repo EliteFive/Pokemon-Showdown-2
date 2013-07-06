@@ -258,6 +258,94 @@ exports.BattleItems = {
 		},
 		desc: "Raises accuracy by 50% if the holder moves after the target."
 	},
+	"burndrive": {
+		id: "burndrive",
+		name: "Burn Drive",
+		spritenum: 54,
+		fling: {
+			basePower: 70
+		},
+		onModifySpe: function(spe, pokemon) {
+			if (pokemon.baseTemplate.species === 'Genesect') {
+				return spe * 1.1;
+			}	
+		},
+		onBasePower: function(basePower, user, target, move) {
+			if (move.id === 'technoblast') {
+				return basePower * 1.2;
+			}
+		},
+		onDrive: 'Fire',
+		num: 118,
+		gen: 5,
+		desc: "Holder's Techno Blast is Fire-type."
+	},
+	"chilldrive": {
+		id: "chilldrive",
+		name: "Chill Drive",
+		spritenum: 67,
+		fling: {
+			basePower: 70
+		},
+		onModifySpe: function(spe, pokemon) {
+			if (pokemon.baseTemplate.species === 'Genesect') {
+				return spe * 1.1;
+			}	
+		},
+		onBasePower: function(basePower, user, target, move) {
+			if (move.id === 'technoblast') {
+				return basePower * 1.2;
+			}
+		},
+		onDrive: 'Ice',
+		num: 119,
+		gen: 5,
+		desc: "Holder's Techno Blast is Ice-type."
+	},
+	"dousedrive": {
+		id: "dousedrive",
+		name: "Douse Drive",
+		spritenum: 103,
+		fling: {
+			basePower: 70
+		},
+		onModifySpe: function(spe, pokemon) {
+			if (pokemon.baseTemplate.species === 'Genesect') {
+				return spe * 1.1;
+			}	
+		},
+		onBasePower: function(basePower, user, target, move) {
+			if (move.id === 'technoblast') {
+				return basePower * 1.2;
+			}
+		},
+		onDrive: 'Water',
+		num: 116,
+		gen: 5,
+		desc: "Holder's Techno Blast is Water-type."
+	},
+	"shockdrive": {
+		id: "shockdrive",
+		name: "Shock Drive",
+		spritenum: 442,
+		fling: {
+			basePower: 70
+		},
+		onModifySpe: function(spe, pokemon) {
+			if (pokemon.baseTemplate.species === 'Genesect') {
+				return spe * 1.1;
+			}	
+		},
+		onBasePower: function(basePower, user, target, move) {
+			if (move.id === 'technoblast') {
+				return basePower * 1.2;
+			}
+		},
+		onDrive: 'Electric',
+		num: 117,
+		gen: 5,
+		desc: "Holder's Techno Blast is Electric-type."
+	},
 	"blackbelt": {
 		id: "blackbelt",
 		name: "Black Belt",
