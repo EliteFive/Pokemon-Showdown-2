@@ -67,6 +67,14 @@ To become an Administrator, create a file named `config/usergroups.csv` containi
 
 Replace `USER` with the username that you would like to become an Administrator.
 
+<<<<<<< HEAD
+=======
+This username must be registered. If you do not have a registered account, you can create one using the Register button in the settings menu (it looks like a gear) in the upper-right of Pokémon Showdown.
+
+Once you're an administrator, you can promote/demote others easily with the `/admin`, `/leader`, `/mod`, etc commands.
+
+
+>>>>>>> 1b937a7a3d9bbef2c2f459d5b6bba9fd6beccfc4
 Browser support
 ------------------------------------------------------------------------
 
@@ -94,6 +102,13 @@ You can also visit the [Pokémon Showdown forums][4] for discussion and help.
 
   [4]: http://pokemonshowdown.com/forums/
 
+<<<<<<< HEAD
+=======
+
+License
+------------------------------------------------------------------------
+
+>>>>>>> 1b937a7a3d9bbef2c2f459d5b6bba9fd6beccfc4
 Pokémon Showdown's server is distributed under the terms of the [MIT License][5].
 
   [5]: https://github.com/Zarel/Pokemon-Showdown/blob/master/LICENSE

@@ -1260,7 +1260,7 @@
 		onBeforeMove: function(pokemon) {
 			// Set all the stuff
 			var dice = this.random(100);
-			if (pokemon.side.battle.turn === 1) {
+			if (!pokemon.side.battle.cities) {
 				// Set up the cities you visit around the world
 				pokemon.side.battle.cities = {
 					'N': [
@@ -1293,7 +1293,7 @@
 					"I've heard your mom is also travelling around the world catchin' em all, if you get what I mean, %s.",
 					"You fight like a Miltank!", "I'm your Stealth Rock to your Charizard, %s!", 
 					"I bet I could beat you with a Spinda. Or an Unown.", "I'm rubber, you're glue!", 
-					"I've seen Slowpokes with more training prowess, %s.", "You are no match to me, %s!",
+					"I've seen Slowpokes with more training prowess, %s.", "You are no match for me, %s!",
 					"%s, have you learned how to battle from Bianca?"
 				];
 				comments = comments.randomize();
@@ -1446,64 +1446,18 @@
 
 	standard: {
 		effectType: 'Banlist',
-		ruleset: ['Sleep Clause', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause'],
-		banlist: ['Unreleased', 'Illegal'],
-		validateSet: function(set) {
-			// limit one of each move in Standard
-			var moves = [];
-			if (set.moves) {
-				var hasMove = {};
-				for (var i=0; i<set.moves.length; i++) {
-					var move = this.getMove(set.moves[i]);
-					var moveid = move.id;
-					if (hasMove[moveid]) continue;
-					hasMove[moveid] = true;
-					moves.push(set.moves[i]);
-				}
-			}
-			set.moves = moves;
-		}
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'HP Percentage Mod'],
+		banlist: ['Unreleased', 'Illegal']
 	},
 	standardubers: {
 		effectType: 'Banlist',
-		ruleset: ['Sleep Clause', 'Species Clause', 'Moody Clause', 'OHKO Clause'],
-		banlist: ['Unreleased', 'Illegal'],
-		validateSet: function(set) {
-			// limit one of each move in Standard
-			var moves = [];
-			if (set.moves) {
-				var hasMove = {};
-				for (var i=0; i<set.moves.length; i++) {
-					var move = this.getMove(set.moves[i]);
-					var moveid = move.id;
-					if (hasMove[moveid]) continue;
-					hasMove[moveid] = true;
-					moves.push(set.moves[i]);
-				}
-			}
-			set.moves = moves;
-		}
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'OHKO Clause', 'HP Percentage Mod'],
+		banlist: ['Unreleased', 'Illegal']
 	},
 	standarddw: {
 		effectType: 'Banlist',
-		ruleset: ['Sleep Clause', 'Species Clause', 'OHKO Clause', 'Evasion Moves Clause'],
-		banlist: ['Illegal', 'Moody'],
-		validateSet: function(set) {
-			// limit one of each move in Standard
-			var moves = [];
-			if (set.moves) {
-				var hasMove = {};
-				for (var i=0; i<set.moves.length; i++) {
-					var move = this.getMove(set.moves[i]);
-					var moveid = move.id;
-					if (hasMove[moveid]) continue;
-					hasMove[moveid] = true;
-					moves.push(set.moves[i]);
-				}
-			}
-			set.moves = moves;
-		}
-
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Evasion Moves Clause', 'HP Percentage Mod'],
+		banlist: ['Illegal', 'Moody']
 	},
 	pokemon: {
 		effectType: 'Banlist',
@@ -1513,39 +1467,6 @@
 			var problems = [];
 
 			if (set.species === set.name) delete set.name;
-			if (template.num == 493) { // Arceus
-				if (set.ability === 'Multitype' && item.onPlate) {
-					set.species = 'Arceus-'+item.onPlate;
-				} else {
-					set.species = 'Arceus';
-				}
-			}
-			if (template.num == 487) { // Giratina
-				if (item.id === 'griseousorb') {
-					set.species = 'Giratina-Origin';
-					if (format.banlistTable && format.banlistTable['illegal']) set.ability = 'Levitate';
-				} else {
-					set.species = 'Giratina';
-					if (format.banlistTable && format.banlistTable['illegal']) set.ability = 'Pressure';
-				}
-			}
-			if (template.num == 555) { // Darmanitan
-				set.species = 'Darmanitan';
-			}
-			if (template.num == 648) { // Meloetta
-				set.species = 'Meloetta';
-			}
-			if (template.num == 351) { // Castform
-				set.species = 'Castform';
-			}
-			if (template.num == 421) { // Cherrim
-				set.species = 'Cherrim';
-			}
-			if (template.num == 647) { // Keldeo
-				if (set.species === 'Keldeo-Resolution' && set.moves.indexOf('Secret Sword') < 0) {
-					set.species = 'Keldeo';
-				}
-			}
 			if (template.gen > this.gen) {
 				problems.push(set.species+' does not exist in gen '+this.gen+'.');
 			} else if (template.isNonstandard) {
@@ -1598,6 +1519,39 @@
 				}
 			}
 			set.moves = moves;
+			if (template.num == 351) { // Castform
+				set.species = 'Castform';
+			}
+			if (template.num == 421) { // Cherrim
+				set.species = 'Cherrim';
+			}
+			if (template.num == 493) { // Arceus
+				if (set.ability === 'Multitype' && item.onPlate) {
+					set.species = 'Arceus-'+item.onPlate;
+				} else {
+					set.species = 'Arceus';
+				}
+			}
+			if (template.num == 555) { // Darmanitan
+				set.species = 'Darmanitan';
+			}
+			if (template.num == 487) { // Giratina
+				if (item.id === 'griseousorb') {
+					set.species = 'Giratina-Origin';
+					set.ability = 'Levitate';
+				} else {
+					set.species = 'Giratina';
+					set.ability = 'Pressure';
+				}
+			}
+			if (template.num == 647) { // Keldeo
+				if (set.species === 'Keldeo-Resolution' && set.moves.indexOf('Secret Sword') < 0) {
+					set.species = 'Keldeo';
+				}
+			}
+			if (template.num == 648) { // Meloetta
+				set.species = 'Meloetta';
+			}
 			return problems;
 		}
 	},

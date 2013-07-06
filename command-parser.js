@@ -110,9 +110,6 @@ var parse = exports.parse = function(message, room, user, connection, levelsDeep
 					connection.sendTo(room, data);
 				}
 			},
-			sendReplyNobox: function(html) {
-				this.sendReply('|raw|'+html);
-			},
 			sendReplyBox: function(html) {
 				this.sendReply('|raw|<div class="infobox">'+html+'</div>');
 			},
@@ -377,3 +374,4 @@ var customCommands = require('./config/commands.js');
 if (customCommands && customCommands.commands) {
 	Object.merge(commands, customCommands.commands);
 }
+

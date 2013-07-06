@@ -1,4 +1,4 @@
-/**
+﻿/**
  * System commands
  * Pokemon Showdown - http://pokemonshowdown.com/
  *
@@ -864,7 +864,6 @@ var commands = exports.commands = {
 			}
 			return false;
 		}
-
 		user.avatar = avatar;
 		if (!parts[1]) {
 			this.sendReply("Avatar changed to:\n" +
@@ -1061,7 +1060,7 @@ var commands = exports.commands = {
 		}
 		user.leaveRoom(targetRoom || room, connection);
 	},
-		
+
 	/*********************************************************
 	 * Moderating: Punishments
 	 *********************************************************/
@@ -1096,7 +1095,8 @@ var commands = exports.commands = {
 	    if (!targetUser || !targetUser.connected) {
 	            return this.sendReply('User '+this.targetUsername+' not found.');
 	    }
-	    this.addModCommand(targetUser.name + ' was forcibly redirected to room ' + target + ' by ' + user.name + '.');
+	    var roomName = (targetRoom.isPrivate)? 'a private room' : 'room ' + target;
+	    this.addModCommand(targetUser.name + ' was forcibly redirected to ' + roomName + ' by ' + user.name + '.');
 	    targetUser.leaveRoom(room);
 	    targetUser.joinRoom(target);
 	},
@@ -1181,6 +1181,7 @@ var commands = exports.commands = {
 		if (!user.can('lock', targetUser)) {
 			return this.sendReply('/lock - Access denied.');
 		}
+
 		if ((targetUser.locked || Users.checkBanned(targetUser.latestIp)) && !target) {
 			var problem = ' but was already '+(targetUser.locked ? 'locked' : 'banned');
 			return this.privateModCommand('('+targetUser.name+' would be locked by '+user.name+problem+'.)');
@@ -1222,10 +1223,12 @@ var commands = exports.commands = {
 			return this.sendReply('User '+this.targetUsername+' not found.');
 		}
 		if (!this.can('ban', targetUser)) return false;
+
 		if (Users.checkBanned(targetUser.latestIp) && !target) {
 			var problem = ' but was already banned';
 			return this.privateModCommand('('+targetUser.name+' would be banned by '+user.name+problem+'.)');
 		}
+
 		targetUser.popup(user.name+" has banned you." + (config.appealurl ? ("  If you feel that your banning was unjustified you can appeal the ban:\n" + config.appealurl) : "") + "\n\n"+target);
 
 		this.addModCommand(""+targetUser.name+" was banned by "+user.name+"." + (target ? " (" + target + ")" : ""));
@@ -1460,6 +1463,7 @@ var commands = exports.commands = {
 	wall: 'announce',
 	announce: function(target, room, user) {
 		if (!target) return this.parse('/help announce');
+
 		if (!this.can('announce', null, room)) return false;
 
 		target = this.canTalk(target);
@@ -2075,6 +2079,7 @@ var commands = exports.commands = {
 			target = '';
 		}
 		if (cmd === 'userdetails') {
+
 			var targetUser = Users.get(target);
 			if (!targetUser) {
 				connection.send('|queryresponse|userdetails|'+JSON.stringify({
@@ -2111,6 +2116,7 @@ var commands = exports.commands = {
 				}
 			}
 			connection.send('|queryresponse|userdetails|'+JSON.stringify(userdetails));
+
 		} else if (cmd === 'roomlist') {
 
 			connection.send('|queryresponse|roomlist|'+JSON.stringify({
@@ -2122,6 +2128,7 @@ var commands = exports.commands = {
 			connection.send('|queryresponse|rooms|'+JSON.stringify(
 				Rooms.global.getRooms()
 			));
+
 		}
 	},
 
@@ -2142,4 +2149,5 @@ var commands = exports.commands = {
 		}
 		user.rename(targetName, targetToken, targetAuth, connection);
 	},
+
 };

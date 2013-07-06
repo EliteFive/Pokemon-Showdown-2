@@ -650,7 +650,6 @@
 	randomSet: function(template, i) {
 		if (i === undefined) i = 1;
 		template = this.getTemplate(template);
-
 		var name = template.name;
 
 		if (!template.exists || (!template.viableMoves && !template.learnset)) {
@@ -1568,7 +1567,7 @@
 		return pokemon;
 	},				
 	randomDoublesTeam: function(side) {
-
+		//IMCOMPLETE
 		for (var i=0; i<keys.length && pokemonLeft < 6; i++) {
 			var pokemon = [];
 			var template = this.getTemplate(pokemon);
@@ -1974,24 +1973,6 @@
 			var template = this.getTemplate(pokemon);
 			var set = this.randomSet(template, i);
 
-			if (template.id in {'vanilluxe':1, 'vanillite':1, 'vanillish':1}) {
-				set.moves = ['icebeam', 'weatherball', 'autotomize', 'flashcannon'];
-			}
-			if (template.id in {'pikachu':1, 'raichu':1}) {
-				set.moves = ['thunderbolt', 'surf', 'substitute', 'nastyplot'];
-			}
-			if (template.id in {'rhydon':1, 'rhyperior':1}) {
-				set.moves = ['surf', 'megahorn', 'earthquake', 'rockblast'];
-			}
-			if (template.id === 'reshiram') {
-				set.moves = ['tailwhip', 'dragontail', 'irontail', 'aquatail'];
-			}
-			if (template.id === 'aggron') {
-				set.moves = ['surf', 'earthquake', 'bodyslam', 'rockslide'];
-			}
-			if (template.id === 'hariyama') {
-				set.moves = ['surf', 'closecombat', 'facade', 'fakeout'];
-			}
 			team.push(set);
 		}
 		

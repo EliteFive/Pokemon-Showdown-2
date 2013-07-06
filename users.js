@@ -170,7 +170,6 @@ var User = (function () {
 
 		var trainersprites = [217, 218, 238, 239];
 		this.avatar = trainersprites[Math.floor(Math.random()*trainersprites.length)];
-
 		this.connected = true;
 
 		if (connection.user) connection.user = this;
