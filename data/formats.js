@@ -605,10 +605,10 @@
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
 		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
 	},
-	statswap: {
+	statshift: {
 		effectType: 'Format',
 		mod: 'statswap',
-		name: "Stat Swap",
+		name: "Stat Shift",
 		section: "Other Metagames",
 		rated: true,
 		challengeShow: true,
@@ -1215,9 +1215,9 @@
 			}
 		}
 	},
-	seasonaljollyjuly: {
+	jollyjuly: {
 		effectType: 'Format',
-		name: "[Seasonal] Jolly July",
+		name: "Jolly July",
 		section: "Seasonal Ladders",
 		team: 'randomSeasonalJuly',
 		canUseRandomTeam: true,
