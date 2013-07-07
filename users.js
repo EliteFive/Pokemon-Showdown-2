@@ -122,6 +122,11 @@ function importUserBalance() {
 		}
 	});
 }
+
+var uploadbalance = true;
+if (uploadbalance = true) {
+	importUserBalance();
+}
 //BALANCE FUNCTIONS END
 var usergroups = {};
 function importUsergroups() {
@@ -213,16 +218,7 @@ var User = (function () {
 		// initialize
 		users[this.userid] = this;
 		
-		// balance start
-		this.uploadbalance = true;
 	}
-	
-	User.prototype.uploadUserBalance = function() {
-		if (uploadbalance = true) {
-			importUserBalance();
-		}
-	};
-	//balance end
 	
 	User.prototype.staffAccess = false;
 	User.prototype.forceRenamed = false;
@@ -1244,6 +1240,7 @@ exports.bannedIps = bannedIps;
 exports.lockedIps = lockedIps;
 
 //BALANCE CODE START
+exports.importUserBalance = importUserBalance;
 exports.userbalance = userbalance;
 //BALANCE CODE END
 exports.usergroups = usergroups;
