@@ -31,14 +31,9 @@ function importUserBalance() {
 			}
 			if (!err) {
 				console.log('BALANCE: uploaded');
-				applyBalance();
 			}
 		}
 	});
-}
-function applyBalance(target, room, user) {
-	user.balance += balance;
-	return uploadbalance = false;
 }
 //BALANCE CODE END
 if (typeof tour == "undefined") {
