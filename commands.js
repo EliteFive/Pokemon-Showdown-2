@@ -14,7 +14,6 @@
 //BALANCE CODE START
 var winnings = 0;
 var balance = 0;
-var overallBalance = new Array();
 var uploadbalance = true;
 if (uploadbalance = true) {
 	importUserBalance();
