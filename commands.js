@@ -29,17 +29,16 @@ function importUserBalance() {
 		}
 	});
 }
-function uploadUserBalance(user) {
-	user.balance = new Array();
-	user.balance += userbalance;
+/*function uploadUserBalance(user) {
+	user.winnings += userbalance;
 	return userbalance = 0;
-}
+}*/
 //BALANCE FUNCTIONS END
 var winnings = 0;
 var uploadbalance = true;
 if (uploadbalance = true) {
 	importUserBalance();
-	uploadUserBalance();
+	/*uploadUserBalance();*/
 }
 //BALANCE VARIABLES END
 if (typeof tour == "undefined") {
