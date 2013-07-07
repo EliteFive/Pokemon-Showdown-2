@@ -15,7 +15,6 @@
 var userbalance = 0;
 //BALANCE FUNCTIONS START
 function importUserBalance() {
-	for (var i in userbalance) delete userbalance[i];
 	fs.readFile('config/userbalance.csv', function(err, data) {
 		if (err) {
 			console.log("BALANCE: upload failed" + err);
@@ -30,13 +29,16 @@ function importUserBalance() {
 		}
 	});
 }
+function uploadbalance(user) {
+	user.balance += userbalance;
+	return userbalance = 0;
+}
 //BALANCE FUNCTIONS END
 var winnings = 0;
 var uploadbalance = true;
 if (uploadbalance = true) {
 	importUserBalance();
-	winnings += userbalance;
-	return userbalance = 0;
+	uploadbalance();
 }
 //BALANCE VARIABLES END
 if (typeof tour == "undefined") {
@@ -639,10 +641,6 @@ var commands = exports.commands = {
 	balance: function(target, room, user) {
 		if (!user.balance || user.balance <= 0) {
 			user.balance = 0;
-		}
-		if (uploadbalance = true) {
-			user.balance += winnings;
-			return winnings = 0;
 		}
 		this.sendReply('Your current balance is $' +user.balance+ '.');
 	},
