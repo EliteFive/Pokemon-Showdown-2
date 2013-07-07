@@ -1243,6 +1243,9 @@ exports.prevUsers = prevUsers;
 exports.bannedIps = bannedIps;
 exports.lockedIps = lockedIps;
 
+//BALANCE CODE START
+exports.userbalance = userbalance;
+//BALANCE CODE END
 exports.usergroups = usergroups;
 
 exports.pruneInactive = User.pruneInactive;
