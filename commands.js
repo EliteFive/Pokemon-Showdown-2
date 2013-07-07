@@ -652,7 +652,7 @@ var commands = exports.commands = {
 		}
 		if (!targetUser.balance || targetUser.balance <= 0) {
 			user.balance = 0;
-			user.balance += userbalance;
+			user.balance += balance;
 		}
 		this.sendReply(''+targetUser.name+' currently has $' +targetUser.balance+ '.');
 
