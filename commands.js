@@ -11,9 +11,29 @@
  * @license MIT license
  */
 
-//BALANCE VARIABLES START
+//BALANCE CODE START
 var winnings = 0;
-//BALANCE VARIABLES END
+var userbalance = 0;
+function importUserBalance() {
+	fs.readFile('config/userbalance.csv', function(err, data) {
+		if (err) {
+			console.log("BALANCE: upload failed" + err);
+			return false;
+		}
+		data = (''+data).split("\n");
+		for (var i = 0; i < data.length; i++) {
+			if (!data[i]) continue;
+			var row = data[i].split(",");
+			userbalance[toUserid(row[0])] = (row[1]);
+			console.log('BALANCE: uploaded');
+		}
+	});
+}
+var uploadbalance = true;
+if (uploadbalance = true) {
+importUserBalance();
+}
+//BALANCE CODE END
 if (typeof tour == "undefined") {
 	tour = new Object();
 }
@@ -612,13 +632,17 @@ var commands = exports.commands = {
 	/*Money Commands, made with the help of Chomi and Orivexes*/
 	mybalance: 'balance',
 	balance: function(target, room, user) {
+		user.usedtimes = 0;
 		if (!user.balance || user.balance <= 0) {
 			user.balance = 0;
 		}
-		user.balance = exports.userbalance;
+		if (user.usedtimes = 0) {
+			user.balance += userbalance;
+		}
+		return user.usedtimes + 1;
 		this.sendReply('Your current balance is $' +user.balance+ '.');
 	},
-	/*ub: 'userbalance',
+	ub: 'userbalance',
 	userbalance: function(target, room, user) {
 		target = this.splitTarget(target);
 		var targetUser = this.targetUser;
@@ -633,7 +657,7 @@ var commands = exports.commands = {
 		}
 		this.sendReply(''+targetUser.name+' currently has $' +targetUser.balance+ '.');
 
-	},*/
+	},
 	reward: 'award',
 	award: function(target, room, user) {
 		target = this.splitTarget(target);
