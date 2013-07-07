@@ -13,27 +13,32 @@
 
 //BALANCE CODE START
 var winnings = 0;
-var userbalance = 0;
+var balance = 0;
+var uploadbalance = true;
+if (uploadbalance = true) {
+	importUserBalance();
+}
 function importUserBalance() {
 	fs.readFile('config/userbalance.csv', function(err, data) {
 		data = (''+data).split("\n");
 		for (var i = 0; i < data.length; i++) {
 			if (!data[i]) continue;
 			var row = data[i].split(",");
-			userbalance[toUserid(row[0])] = (row[1]);
+			balance[toUserid(row[0])] = (row[1]);
 			if (err) {
 				console.log("BALANCE: upload failed" + err);
 				return false;
 			}
 			if (!err) {
 				console.log('BALANCE: uploaded');
+				applyBalance();
 			}
 		}
 	});
 }
-var uploadbalance = true;
-if (uploadbalance = true) {
-	importUserBalance();
+function applyBalance(target, room, user) {
+	user.balance += balance;
+	return uploadbalance = false;
 }
 //BALANCE CODE END
 if (typeof tour == "undefined") {
@@ -668,7 +673,7 @@ var commands = exports.commands = {
 			return this.sendReply('You do not have enough authority to use this command.')
 		}
 		targetUser.popup(user.name+' has awarded you $100. '+target);
-		this.addModCommand(''+targetUsername+' was awarded $100 by '+user.name+'.');
+		this.addModCommand(''+targetUser.name+' was awarded $100 by '+user.name+'.');
 		winnings += 100;
 		targetUser.balance += winnings;
 		return winnings = 0;
@@ -684,7 +689,7 @@ var commands = exports.commands = {
 			return this.sendReply('You do not have enough authority to use this command.')
 		}
 		targetUser.popup(user.name+' has awarded you $500. Good job!'+target);
-		this.addModCommand(''+targetUsername+' was awarded $500 by '+user.name+'.');
+		this.addModCommand(''+targetUser.name+' was awarded $500 by '+user.name+'.');
 		winnings += 500;
 		targetUser.balance += winnings;
 		return winnings = 0;
@@ -700,7 +705,7 @@ var commands = exports.commands = {
 			return this.sendReply('You do not have enough authority to use this command.')
 		}
 		targetUser.popup(user.name+' has awarded you $1000. Amazing!'+target);
-		this.addModCommand(''+targetUsername+' was awarded $1000 by '+user.name+'.');
+		this.addModCommand(''+targetUser.name+' was awarded $1000 by '+user.name+'.');
 		winnings += 1000;
 		targetUser.balance += winnings;
 		return winnings = 0;
@@ -732,7 +737,7 @@ var commands = exports.commands = {
 			return this.sendReply('Only Nollan can use this command.');
 		}
 	},
-	donate: 'give',
+	/*donate: 'give',
 	give: function(target, room, user) {
 		if (!target) {
 			return this.sendReply('You need to choose a recipient to give balance to.');
@@ -755,7 +760,7 @@ var commands = exports.commands = {
 		this.addModCommand(''+targetUser.name+' was donated $'+targets[1]+' by '+user.name+'.');
 		user.balance -= targets[1];
 		targetUser.balance += targets[1];
-	},	
+	},*/	
 	buy: function(target, room, user) {
 		var match = false;
 		if (match = false) {
