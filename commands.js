@@ -29,7 +29,10 @@ function importUserBalance() {
 		}
 	});
 }
-function uploadUserBalance(user, balance) {
+function uploadUserBalance(user) {
+	if (!user.balance || user.balance <= 0) {
+		user.balance = 0;
+	}
 	user.balance += userbalance;
 	return userbalance = 0;
 }
