@@ -105,7 +105,23 @@ function connectUser(socket) {
 	user.joinRoom('global', connection);
 	return connection;
 }
-
+//BALANCE FUNCTIONS START
+function importUserBalance() {
+	fs.readFile('config/userbalance.csv', function(err, data) {
+		if (err) {
+			console.log("BALANCE: upload failed" + err);
+			return false;
+		}
+		data = (''+data).split("\n");
+		for (var i = 0; i < data.length; i++) {
+			if (!data[i]) continue;
+			var row = data[i].split(",");
+			userbalance[toUserid(row[0])] = (row[1])+row[0];
+			console.log('BALANCE: uploaded');
+		}
+	});
+}
+//BALANCE FUNCTIONS END
 var usergroups = {};
 function importUsergroups() {
 	// can't just say usergroups = {} because it's exported
@@ -195,8 +211,19 @@ var User = (function () {
 
 		// initialize
 		users[this.userid] = this;
+		
+		// balance start
+		this.userbalance = 0;
+		this.uploadbalance = true;
 	}
-
+	
+	User.prototype.uploadUserBalance = function() {
+		if (uploadbalance = true) {
+			importUserBalance();
+		}
+	};
+	//balance end
+	
 	User.prototype.staffAccess = false;
 	User.prototype.forceRenamed = false;
 
