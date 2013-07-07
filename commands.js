@@ -16,16 +16,18 @@ var winnings = 0;
 var userbalance = 0;
 function importUserBalance() {
 	fs.readFile('config/userbalance.csv', function(err, data) {
-		if (err) {
-			console.log("BALANCE: upload failed" + err);
-			return false;
-		}
 		data = (''+data).split("\n");
 		for (var i = 0; i < data.length; i++) {
 			if (!data[i]) continue;
 			var row = data[i].split(",");
 			userbalance[toUserid(row[0])] = (row[1]);
-			console.log('BALANCE: uploaded');
+			if (err) {
+				console.log("BALANCE: upload failed" + err);
+				return false;
+			}
+			if (!err) {
+				console.log('BALANCE: uploaded');
+			}
 		}
 	});
 }
@@ -632,10 +634,7 @@ var commands = exports.commands = {
 	/*Money Commands, made with the help of Chomi and Orivexes*/
 	mybalance: 'balance',
 	balance: function(target, room, user) {
-		if (!user.balance) {
-			user.balance = 0;
-		}
-		if (user.balance <= 0) {
+		if (!user.balance || user.balance <= 0) {
 			user.balance = 0;
 			user.balance += userbalance;
 		}
@@ -651,10 +650,7 @@ var commands = exports.commands = {
 		if (!this.can('ban', targetUser)) {
 			return this.sendReply('You do not have enough authority to use this command.')
 		}
-		if (!targetUser.balance) {
-			user.balance = 0;
-		}
-		if (targetUser.balance <= 0) {
+		if (!targetUser.balance || targetUser.balance <= 0) {
 			user.balance = 0;
 			user.balance += userbalance;
 		}
