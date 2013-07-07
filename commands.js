@@ -29,7 +29,7 @@ function importUserBalance() {
 		}
 	});
 }
-function uploadbalance(user) {
+function uploadUserBalance(user) {
 	user.balance += userbalance;
 	return userbalance = 0;
 }
@@ -38,7 +38,7 @@ var winnings = 0;
 var uploadbalance = true;
 if (uploadbalance = true) {
 	importUserBalance();
-	uploadbalance();
+	uploadUserBalance();
 }
 //BALANCE VARIABLES END
 if (typeof tour == "undefined") {
