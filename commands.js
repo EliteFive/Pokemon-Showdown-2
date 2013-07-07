@@ -31,7 +31,7 @@ function importUserBalance() {
 }
 var uploadbalance = true;
 if (uploadbalance = true) {
-importUserBalance();
+	importUserBalance();
 }
 //BALANCE CODE END
 if (typeof tour == "undefined") {
@@ -632,14 +632,13 @@ var commands = exports.commands = {
 	/*Money Commands, made with the help of Chomi and Orivexes*/
 	mybalance: 'balance',
 	balance: function(target, room, user) {
-		user.usedtimes = 0;
-		if (!user.balance || user.balance <= 0) {
+		if (!user.balance) {
 			user.balance = 0;
 		}
-		if (user.usedtimes = 0) {
+		if (user.balance <= 0) {
+			user.balance = 0;
 			user.balance += userbalance;
 		}
-		return user.usedtimes + 1;
 		this.sendReply('Your current balance is $' +user.balance+ '.');
 	},
 	ub: 'userbalance',
@@ -652,8 +651,12 @@ var commands = exports.commands = {
 		if (!this.can('ban', targetUser)) {
 			return this.sendReply('You do not have enough authority to use this command.')
 		}
-		if (!targetUser.balance || targetUser.balance <= 0) {
-			targetUser.balance = 0;
+		if (!targetUser.balance) {
+			user.balance = 0;
+		}
+		if (targetUser.balance <= 0) {
+			user.balance = 0;
+			user.balance += userbalance;
 		}
 		this.sendReply(''+targetUser.name+' currently has $' +targetUser.balance+ '.');
 
@@ -663,7 +666,7 @@ var commands = exports.commands = {
 		target = this.splitTarget(target);
 		var targetUser = this.targetUser;
 		if (!targetUser || !targetUser.connected) {
-			return this.sendReply('User '+this.targetUsername+' not found.');
+			return this.sendReply('User '+this.targetUser.name+' not found.');
 		}
 		if (!this.can('ban', targetUser)) {
 			return this.sendReply('You do not have enough authority to use this command.')
@@ -679,7 +682,7 @@ var commands = exports.commands = {
 		target = this.splitTarget(target);
 		var targetUser = this.targetUser;
 		if (!targetUser || !targetUser.connected) {
-			return this.sendReply('User '+this.targetUsername+' not found.');
+			return this.sendReply('User '+this.targetUser.name+' not found.');
 		}
 		if (!this.can('ban', targetUser)) {
 			return this.sendReply('You do not have enough authority to use this command.')
@@ -695,7 +698,7 @@ var commands = exports.commands = {
 		target = this.splitTarget(target);
 		var targetUser = this.targetUser;
 		if (!targetUser || !targetUser.connected) {
-			return this.sendReply('User '+this.targetUsername+' not found.');
+			return this.sendReply('User '+this.targetUser.name+' not found.');
 		}
 		if (!this.can('ban', targetUser)) {
 			return this.sendReply('You do not have enough authority to use this command.')
