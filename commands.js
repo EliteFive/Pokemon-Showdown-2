@@ -30,9 +30,7 @@ function importUserBalance() {
 	});
 }
 function uploadUserBalance(user) {
-	if (!user.balance || user.balance <= 0) {
-		user.balance = 0;
-	}
+	user.balance = new Array();
 	user.balance += userbalance;
 	return userbalance = 0;
 }
