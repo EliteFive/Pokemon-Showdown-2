@@ -29,7 +29,7 @@ function importUserBalance() {
 		}
 	});
 }
-function uploadUserBalance(user) {
+function uploadUserBalance(user, balance) {
 	user.balance += userbalance;
 	return userbalance = 0;
 }
