@@ -14,6 +14,7 @@
 //BALANCE CODE START
 var winnings = 0;
 var balance = 0;
+var overallBalance = new Array();
 var uploadbalance = true;
 if (uploadbalance = true) {
 	importUserBalance();
@@ -636,7 +637,7 @@ var commands = exports.commands = {
 	balance: function(target, room, user) {
 		if (!user.balance || user.balance <= 0) {
 			user.balance = 0;
-			user.balance += userbalance;
+			user.balance += balance;
 		}
 		this.sendReply('Your current balance is $' +user.balance+ '.');
 	},
