@@ -12,34 +12,7 @@
  */
 
 //BALANCE VARIABLES START
-var userbalance = 0;
-//BALANCE FUNCTIONS START
-function importUserBalance() {
-	fs.readFile('config/userbalance.csv', function(err, data) {
-		if (err) {
-			console.log("BALANCE: upload failed" + err);
-			return false;
-		}
-		data = (''+data).split("\n");
-		for (var i = 0; i < data.length; i++) {
-			if (!data[i]) continue;
-			var row = data[i].split(",");
-			userbalance[toUserid(row[0])] = (row[1])+row[0];
-			console.log('BALANCE: uploaded');
-		}
-	});
-}
-/*function uploadUserBalance(user) {
-	user.winnings += userbalance;
-	return userbalance = 0;
-}*/
-//BALANCE FUNCTIONS END
 var winnings = 0;
-var uploadbalance = true;
-if (uploadbalance = true) {
-	importUserBalance();
-	/*uploadUserBalance();*/
-}
 //BALANCE VARIABLES END
 if (typeof tour == "undefined") {
 	tour = new Object();
