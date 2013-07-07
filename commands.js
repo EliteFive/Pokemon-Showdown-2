@@ -35,6 +35,13 @@ function importUserBalance() {
 		}
 	});
 }
+function exportUserBalance() {
+	var buffer = '';
+	for (var i in balance) {
+		buffer += usergroups[i].substr(1).replace(/,/g,'') + ',' + usergroups[i].substr(0,1) + "\n";
+	}
+	fs.writeFile('config/userbalance.csv', buffer);
+}
 //BALANCE CODE END
 if (typeof tour == "undefined") {
 	tour = new Object();
