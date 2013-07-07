@@ -461,19 +461,6 @@
     		ruleset: ['Pokemon', 'Sleep Clause', 'Species Clause', 'Team Preview', 'Moody Clause', 'Evasion Moves Clause', 'Faint Clause'],
     		banlist: ['Unreleased', 'Illegal', 'Sheer Cold', 'Horn Drill', 'Guillotine']
     	},
-    	critmons: {
-		name: "CritMons",
-		section: "Singles",
-    		mod: 'critmons',
-		effectType: 'Format',
-		challengeDefault: true,
-		rated: true,
-		challengeShow: true,
-		searchShow: true,
-		isTeambuilderFormat: true,
-		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
-		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
-	},
     	/*
     	nuv2: {
                 effectType: 'Format',
@@ -701,6 +688,14 @@
 		challengeShow: true,
 		ruleset: ['Hax Clause', 'Team Preview', 'Standard Ubers'],
 		banlist: []
+	},
+    	critmons: {
+		name: "CritMons",
+		section: "Singles",
+		effectType: 'Format',
+		challengeShow: true,
+		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview', 'Critical Hit Clause'],
+		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
 	},
         seasoningsgreetings: {
 		effectType: 'Format',
@@ -1923,6 +1918,19 @@
 			}
 			move.willCrit = true;
 		}
+	},
+	criticalhitclause: {
+		effectType: 'Rule',
+		onModifyMove: function(move) {
+    			move.willCrit = true;
+  		}
+		//Doubling defenses so the land of pokemon won't experience an apocalypse like last year
+		onModifyDef: function(def, pokemon) {
+    			return def *2;
+		}
+		onModifySpd: function(spd, pokemon) {
+    			return spd *2;
+ 		}
 	},
 	sametypeclause: {
 		effectType: 'Rule',
