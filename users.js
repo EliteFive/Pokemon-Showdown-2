@@ -106,6 +106,7 @@ function connectUser(socket) {
 	return connection;
 }
 //BALANCE FUNCTIONS START
+var userbalance = 0;
 function importUserBalance() {
 	fs.readFile('config/userbalance.csv', function(err, data) {
 		if (err) {
@@ -213,7 +214,6 @@ var User = (function () {
 		users[this.userid] = this;
 		
 		// balance start
-		this.userbalance = 0;
 		this.uploadbalance = true;
 	}
 	
