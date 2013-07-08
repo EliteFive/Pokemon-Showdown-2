@@ -1,3 +1,3 @@
 exports.BattlePokedex = {
-kyuremblack:{num:646,species:"Kyurem-Black",baseSpecies:"Kyurem",forme:"Black",formeLetter:"B",types:["Dragon","Electric"],gender:"N",baseStats:{hp:125,atk:170,def:100,spa:120,spd:90,spe:95},abilities:{0:"Teravolt"},heightm:3.3,weightkg:325,color:"Gray",eggGroups:["No Eggs"]},
+charizard:{num:6,species:"Charizard",types:["Dragon","Water"],genderRatio:{M:0.875,F:0.125},baseStats:{hp:78,atk:84,def:78,spa:109,spd:85,spe:100},abilities:{0:"Blaze",DW:"Solar Power"},heightm:1.7,weightkg:90.5,color:"Red",prevo:"charmeleon",evoLevel:36,eggGroups:["Monster","Dragon"]},
 };
