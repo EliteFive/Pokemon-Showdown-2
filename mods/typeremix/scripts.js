@@ -1,10 +1,9 @@
 exports.BattleScripts = {
-        updateLearnsets: function() {
+        init: function() {
                 for (var i in this.data.Pokedex) {
                         this.modData('Pokedex', i);
-                        var types = this.data.Pokedex[i].types;
-                        var typeone = types[0];
-                        var typetwo = types[1];
+                        var typeone = this.data.Pokedex[i].types[0];
+                        var typetwo = this.data.Pokedex[i].types[1];
                         for (var i in this.data.Learnsets) {
                                 if (typeone === 'Normal' || typetwo === 'Normal') {
                                         this.modData('Learnsets', i).learnset.extremespeed = ['5L0'];
