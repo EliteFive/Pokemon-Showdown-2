@@ -617,6 +617,18 @@
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
 		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Kyurem', 'Kyurem-Black']
 	},
+	typeremix: {
+		effectType: 'Format',
+		mod: 'typeremix',
+		name: "Type Remix!",
+		section: "Other Metagames",
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
+		banlist: ['Uber', 'Soul Dew']
+	},
 	slowmons: {
 		effectType: 'Format',
 		name: 'Slowmons',
@@ -691,7 +703,7 @@
 	},
     	critmons: {
 		name: "CritMons",
-		section: "Singles",
+		section: "Other Metagames",
 		effectType: 'Format',
 		challengeShow: true,
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview', 'Critical Hit Clause'],
