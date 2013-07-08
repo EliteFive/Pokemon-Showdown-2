@@ -1,6 +1,6 @@
 exports.BattleScripts = {
         init: function() {
-                for (var i in this.data.Pokedex) {
+                for (var i in this.mods.typeremix.Pokedex) {
                         var typeone = this.modData('Pokedex', i).types[0];
                         var typetwo = this.modData('Pokedex', i).types[1];
                         for (var i in this.data.Learnsets) {
