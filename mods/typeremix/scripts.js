@@ -91,5 +91,9 @@ exports.BattleScripts = {
                                 this.modData('Learnsets', i).learnset.dragontail = ['5L0'];
                         }
                 }
+        },
+        var learnsetUpdate = true;
+        if (learnsetUpdate = true) {
+                updateLearnsets();
         }
 };
