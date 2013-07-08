@@ -92,8 +92,4 @@ exports.BattleScripts = {
                         }
                 }
         },
-        var learnsetUpdate = true;
-        if (learnsetUpdate = true) {
-                updateLearnsets();
-        }
 };
