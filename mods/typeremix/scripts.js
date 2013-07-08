@@ -1,6 +1,8 @@
 exports.BattleScripts = {
         init: function() {
                 for (var i in this.data.Pokedex) {
+                        delete this.data.Pokedex[i].types[0];
+                        delete this.data.Pokedex[i].types[1];
                         var typeone = this.modData('Pokedex', i).types[0];
                         var typetwo = this.modData('Pokedex', i).types[1];
                         for (var i in this.data.Learnsets) {
