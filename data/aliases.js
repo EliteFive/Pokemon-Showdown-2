@@ -40,6 +40,11 @@ exports.BattleAliases = {
 	"wormadamground": "Wormadam-Sandy",
 	"wormadams": "Wormadam-Trash",
 	"wormadamsteel": "Wormadam-Trash",
+	"kkk": "Kyurem-White",
+	"gayrados": "Gyarados",
+	"666": "Houndoom",
+	"gaygar": "Gengar",
+	"gheygar": "Gengar",
 
 	// base formes
 	"nidoranfemale": "Nidoran-F",
@@ -103,6 +108,7 @@ exports.BattleAliases = {
 	"tspikes": "Toxic Spikes",
 	"twave": "Thunder Wave",
 	"wow": "Will-O-Wisp",
+	"focusmiss": "Focus Blast"
 
 	// Japanese names
 	"birijion": "Virizion",
