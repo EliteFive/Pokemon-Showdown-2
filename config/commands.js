@@ -745,6 +745,15 @@ var commands = exports.commands = {
 	/*********************************************************
 	 * Miscellaneous commands
 	 *********************************************************/
+	 
+	hailnollan: function(target, room, user) {
+		if (!this.can('broadcast')) return false;
+
+		if (!this.canTalk()) return;
+
+		this.add('|raw|<div class="broadcast-blue"><b>HAIL NOLLAN</b> OUR SERVER ADMINISTRATOR AND OVERLORD</div>');
+		this.logModCommand(user.name+' Hailed Nollan '+target);
+	},
 
 	potd: function(target, room, user) {
 		if (!this.can('potd')) return false;
