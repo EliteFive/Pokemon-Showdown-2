@@ -147,8 +147,8 @@ exports.BattleMovedex = {
     inherit: true,
     self: {
       boosts: {
-        spa: 2,
-        spd: 2
+        spa: -2,
+        spd: -2
       }
     }
   },
